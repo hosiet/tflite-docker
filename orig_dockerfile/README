@@ -1,0 +1,4 @@
+* This is the original dockerfile that does not include installed
+Android SDK. One must follow Docker's official SDK Manager installation
+method on top of built images to generate an image that is really
+ready for tflite building.
