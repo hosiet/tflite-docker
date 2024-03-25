@@ -11,6 +11,6 @@ docker run --name c1 -itd --user ${MY_UID}:${MY_GID} -v ${HOLDER_DIR_PATH}/misc:
 docker exec -u root c1 groupadd -g 1000 user
 docker exec -u root c1 useradd -m -g 1000 -s /bin/bash user
 printf "After entering the environment, execute the following commands to build:\n\n%s\n\n" \
-        "cd /host_dir/tensorflow ; bazel --output_user_root=../bazel_cache/cache --output_base=../bazel_cache/output build -c opt --cxxopt=--std=c++17 --config=android_arm64 --fat_apk_cpu=x86,x86_64,arm64-v8a,armeabi-v7a --define=android_dexmerger_tool=d8_dexmerger --define=android_incremental_dexing_tool=d8_dexbuilder //tensorflow/lite/java:tensorflow-lite //tensorflow/lite/java:tensorflow-lite-gpu //tensorflow/lite/java:tensorflow-lite-api //tensorflow/lite/java:tensorflow-lite-gpu-api"
+        "cd /host_dir/tensorflow ; bazel --output_user_root=../bazel_cache/cache --output_base=../bazel_cache/output build -c opt --cxxopt=--std=c++17 --config=android_arm64 --fat_apk_cpu=arm64-v8a --define=android_dexmerger_tool=d8_dexmerger --define=android_incremental_dexing_tool=d8_dexbuilder //tensorflow/lite/java:tensorflow-lite //tensorflow/lite/java:tensorflow-lite-gpu //tensorflow/lite/java:tensorflow-lite-api //tensorflow/lite/java:tensorflow-lite-gpu-api"
 
 docker exec -it c1 bash
