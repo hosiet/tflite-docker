@@ -3,7 +3,10 @@
 MY_UID=$(id -u)
 MY_GID=$(id -g)
 
-docker run --name c1 -itd --user ${MY_UID}:${MY_GID} -v ~/src/tflite-docker/misc:/host_dir/misc -v ~/src/github/hosiet/tensorflow:/host_dir/tensorflow -v ~/src/tflite-docker/bazel_cache:/host_dir/bazel_cache -v ~/src/tflite-docker/.tf_configure.bazelrc:/host_dir/tensorflow/.tf_configure.bazelrc -tflite-builder:boyuanv1 bash
+HOLDER_DIR_PATH="${HOME}/src/tflite-docker/"
+TENSORFLOW_DIR_PATH="${HOME}/src/github/hosiet/tensorflow"
+
+docker run --name c1 -itd --user ${MY_UID}:${MY_GID} -v ${HOLDER_DIR_PATH}/misc:/host_dir/misc -v "${TENSORFLOW_DIR_PATH}":/host_dir/tensorflow -v "${HOLDER_DIR_PATH}"/bazel_cache:/host_dir/bazel_cache -v "${HOLDER_DIR_PATH}"/.tf_configure.bazelrc:/host_dir/tensorflow/.tf_configure.bazelrc tflite-builder:boyuanv1 bash
 #docker run --name c1 -itd -v ~/src/tflite-docker/misc:/host_dir/misc -v ~/src/github/hosiet/tensorflow:/host_dir/tensorflow -v ~/src/tflite-docker/bazel_cache:/host_dir/bazel_cache tflite-builder:boyuanv1 bash
 
 docker exec -u root c1 groupadd -g 1000 user
